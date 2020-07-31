@@ -25,5 +25,14 @@ public class Usuario {
     private boolean ativo;
 
     @Getter @Setter
+    private String cep;
+
+    @Getter @Setter
+    private String endereco;
+
+    @Getter @Setter
+    private String telefone;
+
+    @Getter @Setter
     private LocalDate dataDeCadastro;
 }
