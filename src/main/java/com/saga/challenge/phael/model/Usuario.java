@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 public class Usuario {
@@ -20,7 +19,7 @@ public class Usuario {
 
     @ManyToOne
     @Getter @Setter
-    private Funcao funcao;
+    private Perfil perfil;
 
     @Getter @Setter
     private boolean ativo;

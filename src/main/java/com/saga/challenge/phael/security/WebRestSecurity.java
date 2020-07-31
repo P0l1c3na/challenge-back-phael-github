@@ -54,9 +54,9 @@ public class WebRestSecurity extends WebSecurityConfigurerAdapter {
                         "From usuario " +
                         "Where email Like ?")
                 .authoritiesByUsernameQuery("Select f.id, f.nome " +
-                        "From funcao f " +
+                        "From perfil f " +
                         "Inner Join usuario u " +
-                        "On f.id = u.funcao_id " +
+                        "On f.id = u.perfil_id " +
                         "Where u.email Like ?");
     }
 

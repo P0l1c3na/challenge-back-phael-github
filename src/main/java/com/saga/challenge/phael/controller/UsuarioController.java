@@ -1,10 +1,7 @@
 package com.saga.challenge.phael.controller;
 
-import com.saga.challenge.phael.enums.FuncaoUsuario;
 import com.saga.challenge.phael.model.Usuario;
-import com.saga.challenge.phael.security.UserSecurityInformation;
 import com.saga.challenge.phael.service.UsuarioService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +22,7 @@ public class UsuarioController {
             if (usuarioService.validaAcessoAoRecurso(email)) {
                 return new ResponseEntity<>(usuarioService.findById(email).orElse(null), HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("Você não tem acesso a este recurso.", HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>("Você não tem permissão para acessar os dados!", HttpStatus.FORBIDDEN);
             }
         } catch (Exception e) {
             return new ResponseEntity<>("Erro ao buscar Usuario", HttpStatus.BAD_REQUEST);
@@ -53,7 +50,7 @@ public class UsuarioController {
             if (usuarioService.validaAcessoAoRecurso(usuario.getEmail())) {
                 return new ResponseEntity<>(usuarioService.update(usuario), HttpStatus.ACCEPTED);
             } else {
-                return new ResponseEntity<>("Você não tem acesso a este recurso.", HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>("Você não tem permissão para alterar a estes dados!", HttpStatus.FORBIDDEN);
             }
         } catch (Exception e) {
             return new ResponseEntity<>("Erro ao atualizar usuario...", HttpStatus.BAD_REQUEST);

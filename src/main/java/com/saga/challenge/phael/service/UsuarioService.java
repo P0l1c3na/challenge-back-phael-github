@@ -1,7 +1,7 @@
 package com.saga.challenge.phael.service;
 
 import com.saga.challenge.phael.core.AbstractService;
-import com.saga.challenge.phael.enums.FuncaoUsuario;
+import com.saga.challenge.phael.enums.PerfilUsuario;
 import com.saga.challenge.phael.model.Usuario;
 import com.saga.challenge.phael.repository.IUsuarioRepository;
 import com.saga.challenge.phael.security.UserSecurityInformation;
@@ -36,6 +36,6 @@ public class UsuarioService extends AbstractService<Usuario, String> {
         return userSecurityInfo.getLoggedUser().getUsername().equalsIgnoreCase(usuario.getEmail()) ||
                 userSecurityInfo.getLoggedUser().getAuthorities()
                         .stream().findFirst().get()
-                        .getAuthority().equalsIgnoreCase(FuncaoUsuario.ROLE_ADMINISTRADOR.name());
+                        .getAuthority().equalsIgnoreCase(PerfilUsuario.ROLE_ADMINISTRADOR.name());
     }
 }
