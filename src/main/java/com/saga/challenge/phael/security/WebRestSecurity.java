@@ -34,7 +34,7 @@ public class WebRestSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/challenge-phael/api/cadastroUsuario",
+                .antMatchers("/challenge-phael/api/usuario/salvar",
                         "/swagger-resources/**", "/configuration/**", "/swagger-ui.html", "/webjars/**", "/v2/api-docs")
                 .permitAll()
                 .anyRequest().authenticated();
@@ -42,7 +42,7 @@ public class WebRestSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().antMatchers("/cadastroUsuario", "/swagger-resources/**",
+        webSecurity.ignoring().antMatchers("/usuario/salvar", "/swagger-resources/**",
                 "/configuration/**", "/swagger-ui.html", "/webjars/**", "/v2/api-docs");
     }
 
