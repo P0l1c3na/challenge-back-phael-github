@@ -15,6 +15,9 @@ public class Usuario {
     private String email;
 
     @Setter @Getter
+    private String nome;
+
+    @Setter @Getter
     private String senha;
 
     @ManyToOne

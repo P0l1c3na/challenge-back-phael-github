@@ -1,5 +1,6 @@
 package com.saga.challenge.phael.controller;
 
+import com.saga.challenge.phael.dto.RespostaSalvarUsuarioDTO;
 import com.saga.challenge.phael.model.Usuario;
 import com.saga.challenge.phael.service.UsuarioService;
 import io.swagger.annotations.ApiResponse;
@@ -54,7 +55,7 @@ public class UsuarioController {
     @RequestMapping(path = "/salvar", method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody Usuario usuario) {
         try {
-            return new ResponseEntity<>(usuarioService.save(usuario), HttpStatus.CREATED);
+            return new ResponseEntity<>(usuarioService.salvar(usuario), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("Erro ao salvar Usuario", HttpStatus.BAD_REQUEST);
         }
@@ -68,12 +69,13 @@ public class UsuarioController {
     public ResponseEntity<?> update(@RequestBody Usuario usuario) {
         try {
             if (usuarioService.validaAcessoAoRecurso(usuario.getEmail())) {
-                return new ResponseEntity<>(usuarioService.update(usuario), HttpStatus.ACCEPTED);
+                usuarioService.update(usuario);
+                return new ResponseEntity<>(new RespostaSalvarUsuarioDTO(Boolean.FALSE ,"Atualizado com sucesso!"), HttpStatus.ACCEPTED);
             } else {
-                return new ResponseEntity<>("Você não tem permissão para alterar a estes dados!", HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>(new RespostaSalvarUsuarioDTO(Boolean.FALSE ,"Você não tem permissão para alterar a estes dados!"), HttpStatus.FORBIDDEN);
             }
         } catch (Exception e) {
-            return new ResponseEntity<>("Erro ao atualizar usuario...", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new RespostaSalvarUsuarioDTO(Boolean.FALSE ,"Erro ao atualizar usuario..."), HttpStatus.BAD_REQUEST);
         }
     }
 
